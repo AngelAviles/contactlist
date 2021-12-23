@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Contact List</title>
+
+<!-- Bootstrap CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<h2>User</h2>
+		<form action="#" th:action="@{/user}" th:object="${user}"
+			method="post">
+			<div class="form-group">
+				<label for="name">Name</label> <input type="text"
+					class="form-control" id="name" th:field="*{name}" name="name">
+			</div>
+			<div class="form-group">
+				<label for="name">Age</label> <input type="text"
+					class="form-control" id="age" th:field="*{age}" name="age">
+			</div>
+			<div class="form-group">
+				<label for="nickname">Nickname</label> <input type="text"
+					class="form-control" id="nickname" th:field="*{nickname}"
+					name="nickname" th:readonly="${user.nickname != null}">
+			</div>
+			<div class="form-group">
+				<label for="phones">Phones</label> <input type="text"
+					class="form-control" id="phones" th:field="*{phones}" name="phones">
+			</div>
+			<input type="hidden" th:field="*{password}" name="password" id="password">
+			<input type="hidden" th:field="*{enabled}" name="enabled" id="enabled">
+			<button type="submit" class="btn btn-success">Save</button>
+		</form>
+	</div>
+</body>
+</html>

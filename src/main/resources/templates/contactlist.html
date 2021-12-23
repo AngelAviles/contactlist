@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Contact List</title>
+
+<!-- Bootstrap CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+	th:href="@{/css/bootstrap.css}">
+<link
+	href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css"
+	rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<h2 th:if="${users.isEmpty()}">No contact here.</h2>
+		<div th:if="${!users.isEmpty()}">
+			<h2>My Contact List</h2>
+			<br>
+			<table id="contacts" class="table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Age</th>
+						<th class="no-sort">Nickname</th>
+						<th>Phone</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="user : ${users}">
+						<td th:text="${user.name}">
+						<td th:text="${user.age}">
+						<td th:text="${user.nickname}">
+						<td th:text="${user.phones}">
+						<td><a class="btn btn-info"
+							th:href="@{/user/{id}(id=${user.nickname})}">Edit</a></td>
+						<td><a class="btn btn-danger"
+							th:href="@{/delete/{id}(id=${user.nickname})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br>
+		<div>
+			<a href="/user/newuser" class="btn btn-primary">Add</a>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+	<script src="../static/js/app.js" th:src="@{/js/app.js}"></script>
+</body>
+</html>
